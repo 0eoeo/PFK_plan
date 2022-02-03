@@ -12,8 +12,10 @@ wb = openpyxl.load_workbook('ПЛАН на Январь 22г.xlsx')
 dwb = openpyxl.load_workbook('ПЛАН на Январь 22г.xlsx', data_only=True)
 
 # now_date = datetime.strptime('2022-01-19 00:00:00', '%Y-%m-%d %H:%M:%S')
-start_date = input("Введите дату (Формат %Y-%m-%d %H:%M:%S) (Enter, если сегодня): ")
+start_date = input("Введите дату (Формат dd.mm.yyyy) (Enter, если сегодня): ")
 try:
+    st = start_date.split('.')
+    start_date = f'{st[2]}-{st[1]}-{st[0]} 00:00:00'
     start_date = datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
 except:
     start_date = datetime.now()
