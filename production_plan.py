@@ -59,12 +59,10 @@ for key in endpoints_cells.keys():
                                                                                  WHERE endpoint_id = {v[0]});""")
                         resp = cur.fetchall()
 
-                        print(79, v[0], resp[0][0], resp[0][1], round(cell_v.value), plan_info)
-                        # cur.execute(""" INSERT INTO source.production_plan (client_id, endpoint_id, period_start,
-                        #                                                     period_end, plan, plan_info)
-                        #                 VALUES (%s, %s, %s, %s, %s, %s);""", (79, v[0], resp[0][0], resp[0][1], round(plan),
-                        #                                                       plan_info))
-                        # conn.commit()
-
+                        cur.execute(""" INSERT INTO source.production_plan (client_id, endpoint_id, period_start,
+                                                                            period_end, plan, plan_info)
+                                        VALUES (%s, %s, %s, %s, %s, %s);""", (79, v[0], resp[0][0], resp[0][1], round(plan),
+                                                                              plan_info))
+                        conn.commit()
 cur.close()
 conn.close()
